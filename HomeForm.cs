@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
+using System;
 
 namespace GrifindoToysPayrollSystem
 {
@@ -16,30 +10,29 @@ namespace GrifindoToysPayrollSystem
         {
             InitializeComponent();
             this.IsMdiContainer = true;
+
+            this.Size = new Size(1100, 500);
         }
 
         private void employeeComponentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CloseCurrentForm();
             Form1 employeeform = new Form1();
-            employeeform.MdiParent = this;
-            employeeform.Show();
+            InitializeChildForm(employeeform);
         }
 
         private void salaryComponentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CloseCurrentForm();
             Form2 salaryform = new Form2();
-            salaryform.MdiParent = this;
-            salaryform.Show();
+            InitializeChildForm(salaryform);
         }
 
         private void settingComponentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CloseCurrentForm();
             Form3 settingsForm = new Form3();
-            settingsForm.MdiParent = this;
-            settingsForm.Show();
+            InitializeChildForm(settingsForm);
         }
 
         private void CloseCurrentForm()
@@ -50,5 +43,15 @@ namespace GrifindoToysPayrollSystem
             }
         }
 
+        private void InitializeChildForm(Form childForm)
+        {
+            childForm.StartPosition = FormStartPosition.Manual;
+            childForm.Location = new Point(0, 0); // Top-left corner
+            childForm.MdiParent = this;
+            childForm.ControlBox = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Size = new Size(1100, 500);
+            childForm.Show();
+        }
     }
 }
