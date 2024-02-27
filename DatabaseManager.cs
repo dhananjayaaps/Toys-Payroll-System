@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
 
@@ -101,5 +103,68 @@ namespace GrifindoToysPayrollSystem
             }
             return false;
         }
+
+        public Employee GetEmployeeDetails(string query)
+        {
+            Employee employee = null;
+
+            if (this.OpenConnection())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        employee = new Employee
+                        {
+                            Id = Convert.ToInt32(reader["id"]),
+                            Name = reader["name"].ToString(),
+                            Salary = Convert.ToDecimal(reader["salary"]),
+                            OTRate = Convert.ToDecimal(reader["ot_rate"]),
+                            Allowance = Convert.ToDecimal(reader["allowance"])
+                        };
+                    }
+                }
+                this.CloseConnection();
+            }
+            return employee;
+        }
+
+        public DataTable GetDataTable(string query)
+        {
+            DataTable dataTable = new DataTable();
+
+            if (this.OpenConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(dataTable);
+                    }
+                }
+                this.CloseConnection();
+            }
+
+            return dataTable;
+        }
+
+        public void ExecuteQuery(string query)
+        {
+            if(OpenConnection()){
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    cmd.ExecuteNonQuery();
+                    CloseConnection();
+          
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+
     }
 }

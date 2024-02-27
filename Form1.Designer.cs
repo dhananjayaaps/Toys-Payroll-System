@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label ot_rate;
             System.Windows.Forms.Label allowance;
             this.id_label = new System.Windows.Forms.Label();
@@ -41,10 +42,39 @@
             this.registerBtn = new System.Windows.Forms.Button();
             this.updateBtn = new System.Windows.Forms.Button();
             this.deleteBtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.getEmployee = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.searchBtn = new System.Windows.Forms.Button();
+            this.showAllBtn = new System.Windows.Forms.Button();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.salaryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oTRateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.allowanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ot_rate = new System.Windows.Forms.Label();
             allowance = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // ot_rate
+            // 
+            ot_rate.AutoSize = true;
+            ot_rate.Location = new System.Drawing.Point(51, 166);
+            ot_rate.Name = "ot_rate";
+            ot_rate.Size = new System.Drawing.Size(58, 16);
+            ot_rate.TabIndex = 3;
+            ot_rate.Text = "OT Rate";
+            // 
+            // allowance
+            // 
+            allowance.AutoSize = true;
+            allowance.Location = new System.Drawing.Point(51, 203);
+            allowance.Name = "allowance";
+            allowance.Size = new System.Drawing.Size(69, 16);
+            allowance.TabIndex = 4;
+            allowance.Text = "Allowance";
             // 
             // id_label
             // 
@@ -73,30 +103,13 @@
             this.label_salary.TabIndex = 2;
             this.label_salary.Text = "Salary";
             // 
-            // ot_rate
-            // 
-            ot_rate.AutoSize = true;
-            ot_rate.Location = new System.Drawing.Point(51, 166);
-            ot_rate.Name = "ot_rate";
-            ot_rate.Size = new System.Drawing.Size(58, 16);
-            ot_rate.TabIndex = 3;
-            ot_rate.Text = "OT Rate";
-            // 
-            // allowance
-            // 
-            allowance.AutoSize = true;
-            allowance.Location = new System.Drawing.Point(51, 203);
-            allowance.Name = "allowance";
-            allowance.Size = new System.Drawing.Size(69, 16);
-            allowance.TabIndex = 4;
-            allowance.Text = "Allowance";
-            // 
             // IdTextBox
             // 
             this.IdTextBox.Location = new System.Drawing.Point(161, 48);
             this.IdTextBox.Name = "IdTextBox";
             this.IdTextBox.Size = new System.Drawing.Size(136, 22);
             this.IdTextBox.TabIndex = 5;
+            this.IdTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
             // 
             // NameTextBox
             // 
@@ -156,21 +169,108 @@
             this.deleteBtn.UseVisualStyleBackColor = true;
             this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
-            // button1
+            // getEmployee
             // 
-            this.button1.Location = new System.Drawing.Point(36, 312);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 29);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Delete";
-            this.button1.UseVisualStyleBackColor = true;
+            this.getEmployee.Location = new System.Drawing.Point(36, 312);
+            this.getEmployee.Name = "getEmployee";
+            this.getEmployee.Size = new System.Drawing.Size(110, 29);
+            this.getEmployee.TabIndex = 13;
+            this.getEmployee.Text = "View Details";
+            this.getEmployee.UseVisualStyleBackColor = true;
+            this.getEmployee.Click += new System.EventHandler(this.getEmployee_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.salaryDataGridViewTextBoxColumn,
+            this.oTRateDataGridViewTextBoxColumn,
+            this.allowanceDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.employeeBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(384, 48);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(913, 293);
+            this.dataGridView1.TabIndex = 14;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // searchBtn
+            // 
+            this.searchBtn.Location = new System.Drawing.Point(268, 312);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(110, 29);
+            this.searchBtn.TabIndex = 15;
+            this.searchBtn.Text = "Search";
+            this.searchBtn.UseVisualStyleBackColor = true;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
+            // 
+            // showAllBtn
+            // 
+            this.showAllBtn.Location = new System.Drawing.Point(152, 312);
+            this.showAllBtn.Name = "showAllBtn";
+            this.showAllBtn.Size = new System.Drawing.Size(110, 29);
+            this.showAllBtn.TabIndex = 16;
+            this.showAllBtn.Text = "View All";
+            this.showAllBtn.UseVisualStyleBackColor = true;
+            this.showAllBtn.Click += new System.EventHandler(this.showAllBtn_Click);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // salaryDataGridViewTextBoxColumn
+            // 
+            this.salaryDataGridViewTextBoxColumn.DataPropertyName = "Salary";
+            this.salaryDataGridViewTextBoxColumn.HeaderText = "Salary";
+            this.salaryDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.salaryDataGridViewTextBoxColumn.Name = "salaryDataGridViewTextBoxColumn";
+            this.salaryDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // oTRateDataGridViewTextBoxColumn
+            // 
+            this.oTRateDataGridViewTextBoxColumn.DataPropertyName = "OTRate";
+            this.oTRateDataGridViewTextBoxColumn.HeaderText = "OTRate";
+            this.oTRateDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.oTRateDataGridViewTextBoxColumn.Name = "oTRateDataGridViewTextBoxColumn";
+            this.oTRateDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // allowanceDataGridViewTextBoxColumn
+            // 
+            this.allowanceDataGridViewTextBoxColumn.DataPropertyName = "Allowance";
+            this.allowanceDataGridViewTextBoxColumn.HeaderText = "Allowance";
+            this.allowanceDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.allowanceDataGridViewTextBoxColumn.Name = "allowanceDataGridViewTextBoxColumn";
+            this.allowanceDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // employeeBindingSource
+            // 
+            this.employeeBindingSource.DataSource = typeof(GrifindoToysPayrollSystem.Employee);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1095, 450);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(1393, 450);
+            this.Controls.Add(this.showAllBtn);
+            this.Controls.Add(this.searchBtn);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.getEmployee);
             this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.updateBtn);
             this.Controls.Add(this.registerBtn);
@@ -187,6 +287,8 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -205,7 +307,16 @@
         private System.Windows.Forms.Button registerBtn;
         private System.Windows.Forms.Button updateBtn;
         private System.Windows.Forms.Button deleteBtn;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button getEmployee;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn salaryDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn oTRateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn allowanceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource employeeBindingSource;
+        private System.Windows.Forms.Button searchBtn;
+        private System.Windows.Forms.Button showAllBtn;
     }
 }
 
